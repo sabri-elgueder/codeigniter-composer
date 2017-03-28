@@ -1,0 +1,43 @@
+{
+    "name": "satoripophq/codeigniter-composer",
+    "description": "Package to install CodeIgniter via Composer.",
+    "keywords": [
+        "CodeIgniter",
+        "Composer",
+        "installer"
+    ],
+	"homepage": "http://www.sabri-elgueder.tn",
+    "license": "MIT",
+    "authors": [
+        {
+			"name": "Sabri El Gueder",
+			"email": "sabri.elgueder@satoripop.com"
+        }
+    ],
+	"support": {
+		"forum": "http://forum.codeigniter.com/",
+		"wiki": "https://github.com/bcit-ci/CodeIgniter4/wiki",
+		"irc": "irc://irc.freenode.net/codeigniter",
+		"source": "https://github.com/bcit-ci/CodeIgniter4"
+	},	
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/bcit-ci/CodeIgniter4"
+        }
+    ],
+    "require": {
+            "codeigniter/framework": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+			"CodeIgniter\\": "system/"
+		}
+    },
+	"scripts": {
+		"post-update-cmd": [
+			"composer dump-autoload",
+			"CodeIgniter\\ComposerScripts::postUpdate"
+		]
+	}
+}
