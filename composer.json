@@ -1,14 +1,16 @@
 {
-    "name": "satoripophq/codeigniter-composer",
-    "description": "Package to install CodeIgniter via Composer.",
-    "keywords": [
+	"description": "Package to install The CodeIgniter framework 3 via Composer ",
+	"name": "codeigniter/framework",
+	"keywords": [
         "CodeIgniter",
         "Composer",
-        "installer"
+        "installer",
+        "Satoripop"
     ],
+	"type": "project",
 	"homepage": "http://www.sabri-elgueder.tn",
-    "license": "MIT",
-    "authors": [
+	"license": "MIT",
+	"authors": [
         {
 			"name": "Sabri El Gueder",
 			"email": "sabri.elgueder@satoripop.com"
@@ -16,28 +18,22 @@
     ],
 	"support": {
 		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter4/wiki",
+		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
 		"irc": "irc://irc.freenode.net/codeigniter",
-		"source": "https://github.com/bcit-ci/CodeIgniter4"
-	},	
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/bcit-ci/CodeIgniter4"
-        }
-    ],
+		"source": "https://github.com/bcit-ci/CodeIgniter"
+	},
     "require": {
-            "codeigniter/framework": "dev-develop"
+		"php": ">=5.3.2",
+		"codeigniter/framework": "3.*"
     },
     "autoload": {
         "psr-4": {
-			"CodeIgniter\\": "system/"
-		}
+            "sabri-elgueder\\CodeIgniter\\": "/"
+        }
     },
-	"scripts": {
-		"post-update-cmd": [
-			"composer dump-autoload",
-			"CodeIgniter\\ComposerScripts::postUpdate"
-		]
-	}
+    "scripts" : {
+        "post-create-project-cmd": [
+            "sabri-elgueder\\CodeIgniter\\index::postInstall"
+        ]
+    }
 }
