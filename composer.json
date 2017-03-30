@@ -33,7 +33,7 @@
     },
     "scripts" : {
         "post-create-project-cmd": [
-            "sabri-elgueder\\CodeIgniter\\index::postInstall"
+            "sabri-elgueder\\CodeIgniter\\Installer::postInstall"
         ]
     }
 }
