@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "sabri-elgueder\\CodeIgniter\\": "src/"
+            "satoripophq\\CodeIgniter\\": "src/"
         }
     },
     "scripts" : {
         "post-create-project-cmd": [
-            "sabri-elgueder\\CodeIgniter\\Installer::postInstall"
+            "satoripophq\\CodeIgniter\\Installer::postInstall"
         ]
     }
 }

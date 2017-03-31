@@ -8,7 +8,7 @@
  * @link       https://github.com/sabri-elgueder/codeigniter-composer
  */
 
-namespace sabri-elgueder\CodeIgniter;
+namespace satoripophq\CodeIgniter;
 
 use Composer\Script\Event;
 
