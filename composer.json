@@ -1,6 +1,6 @@
 {
 	"description": "Package to install The CodeIgniter framework 3 via Composer ",
-	"name": "satoripophq/codeigniter",
+	"name": "satoripophq/codeigniter-composer",
 	"keywords": [
         "CodeIgniter",
         "Composer",
