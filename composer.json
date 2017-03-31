@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "sabri-elgueder\\CodeIgniter\\": "/"
+            "sabri-elgueder\\CodeIgniter\\": "src/"
         }
     },
     "scripts" : {
