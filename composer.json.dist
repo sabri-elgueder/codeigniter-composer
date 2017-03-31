@@ -1,13 +1,11 @@
 {
 	"description": "Package to install The CodeIgniter framework 3 via Composer ",
-	"name": "codeigniter/framework",
 	"keywords": [
         "CodeIgniter",
         "Composer",
         "installer",
         "Satoripop"
     ],
-	"type": "project",
 	"homepage": "http://www.sabri-elgueder.tn",
 	"license": "MIT",
 	"authors": [
