@@ -67,6 +67,15 @@ class Installer
                 'msg'   => 'See https://github.com/sabri-elgueder/codeigniter-modular-extensions-hmvc',
                 'example_branch' => 'master',
             ),
+            'modular-extensions-hmvc' => array(
+                'site'  => 'github',
+                'user'  => 'jenssegers',
+                'repos' => 'codeigniter-template-library',
+                'name'  => 'CodeIgniter Template Library',
+                'dir'   => array('config', 'libraries'),
+                'msg'   => 'See https://github.com/jenssegers/codeigniter-template-library',
+                'example_branch' => 'master',
+            ),
             'ion-auth' => array(
                 'site'  => 'github',
                 'user'  => 'benedmunds',
