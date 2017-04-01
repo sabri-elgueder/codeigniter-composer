@@ -74,16 +74,16 @@ $ php bin/install.php translations 3.1.0
 $ php bin/install.php matches-cli master
 ```
 
-[CodeIgniter HMVC Modules](https://github.com/jenssegers/codeigniter-hmvc-modules):
+[CodeIgniter HMVC Modules](https://github.com/sabri-elgueder/codeigniter-hmvc-modules):
 
 ```
 $ php bin/install.php hmvc-modules master
 ```
 
-[Modular Extensions - HMVC](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc):
+[Modular Extensions - HMVC](https://github.com/sabri-elgueder/codeigniter-modular-extensions-hmvc):
 
 ```
-$ php bin/install.php modular-extensions-hmvc codeigniter-3.x
+$ php bin/install.php modular-extensions-hmvc master
 ```
 
 [Ion Auth](https://github.com/benedmunds/CodeIgniter-Ion-Auth):

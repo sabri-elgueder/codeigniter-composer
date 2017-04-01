@@ -51,11 +51,11 @@ class Installer
             ),
             'hmvc-modules' => array(
                 'site'  => 'github',
-                'user'  => 'jenssegers',
+                'user'  => 'sabri-elgueder',
                 'repos' => 'codeigniter-hmvc-modules',
-                'name'  => 'CodeIgniter HMVC Modules (jenssegers)',
+                'name'  => 'CodeIgniter HMVC Modules (Sabri El Gueder)',
                 'dir'   => array('core', 'third_party'),
-                'msg'   => 'See https://github.com/jenssegers/codeigniter-hmvc-modules#installation',
+                'msg'   => 'See https://github.com/sabri-elgueder/codeigniter-hmvc-modules#installation',
                 'example_branch' => 'master',
             ),
             'modular-extensions-hmvc' => array(
