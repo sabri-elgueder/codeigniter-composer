@@ -2,10 +2,10 @@
 
 ## Part of CodeIgniter Composer Installer
 ##
-## @author     Kenji Suzuki <https://github.com/kenjis>
+## @author     Kenji Suzuki <https://github.com/sabri-elgueder>
 ## @license    MIT License
-## @copyright  2015 Kenji Suzuki
-## @link       https://github.com/kenjis/codeigniter-composer-installer
+## @copyright  2017 Sabri El Gueder
+## @link       https://github.com/sabri-elgueder/codeigniter-composer
 
 cd `dirname $0`
 cd ..

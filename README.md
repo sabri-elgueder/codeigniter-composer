@@ -1,8 +1,8 @@
 # The CodeIgniter framework 3 Composer Installer
 
-[![Latest Stable Version](https://poser.pugx.org/satoripophq/codeigniter-composer/v/stable)](https://packagist.org/packages/satoripophq/codeigniter-composer) 
-[![Total Downloads](https://poser.pugx.org/satoripophq/codeigniter-composer/downloads)](https://packagist.org/packages/satoripophq/codeigniter-composer) 
-[![Latest Unstable Version](https://poser.pugx.org/satoripophq/codeigniter-composer/v/unstable)](https://packagist.org/packages/satoripophq/codeigniter-composer) 
+[![Latest Stable Version](https://poser.pugx.org/satoripophq/codeigniter-composer/v/stable)](https://packagist.org/packages/satoripophq/codeigniter-composer)
+[![Total Downloads](https://poser.pugx.org/satoripophq/codeigniter-composer/downloads)](https://packagist.org/packages/satoripophq/codeigniter-composer)
+[![Latest Unstable Version](https://poser.pugx.org/satoripophq/codeigniter-composer/v/unstable)](https://packagist.org/packages/satoripophq/codeigniter-composer)
 [![License](https://poser.pugx.org/satoripophq/codeigniter-composer/license)](https://packagist.org/packages/satoripophq/codeigniter-composer)
 
 This package installs the offical [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) (version `3.1.*`) with secure folder structure via Composer.
@@ -92,7 +92,7 @@ $ php bin/install.php modular-extensions-hmvc codeigniter-3.x
 $ php bin/install.php ion-auth 2
 ```
 
-[CodeIgniter3 Filename Checker](https://github.com/kenjis/codeigniter3-filename-checker):
+[CodeIgniter3 Filename Checker](https://github.com/sabri-elgueder/codeigniter3-filename-checker):
 
 ```
 $ php bin/install.php filename-checker master
