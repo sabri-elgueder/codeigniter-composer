@@ -265,27 +265,21 @@ class Installer
                 if (file_exists($dst . '/' . $iterator->getSubPathName())) {
 
 
+                  $contents = file_get_contents($dst . '/' . $iterator->getSubPathName());
 
                   if($iterator->getSubPathName() == 'autoload.php') {
-
                     // Enable libraries template
-                    $contents = file_get_contents($dst . '/' . $iterator->getSubPathName());
                     $contents = str_replace(
                         '$autoload[\'libraries\'] = array();',
                         '$autoload[\'libraries\'] = array(\'template\');',
                         $contents
                     );
-                    file_put_contents($file, $contents);
-
                   } else {
-
-                    $contents = file_get_contents($dst . '/' . $iterator->getSubPathName());
                     $contents2 = file_get_contents($file);
                     $contents .=  str_replace( '<?php', '', $contents2 );
-                    file_put_contents($dst . '/' . $iterator->getSubPathName(), $contents);
-
                   }
 
+                  file_put_contents($dst . '/' . $iterator->getSubPathName(), $contents);
                   $success = false;
 
                 } else {
