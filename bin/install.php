@@ -67,7 +67,7 @@ class Installer
                 'msg'   => 'See https://github.com/sabri-elgueder/codeigniter-modular-extensions-hmvc',
                 'example_branch' => 'master',
             ),
-            'modular-extensions-hmvc' => array(
+            'codeigniter-template-library' => array(
                 'site'  => 'github',
                 'user'  => 'jenssegers',
                 'repos' => 'codeigniter-template-library',
