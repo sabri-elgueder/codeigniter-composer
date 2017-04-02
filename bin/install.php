@@ -155,7 +155,7 @@ class Installer
     {
         $user = $this->packages[$package]['user'];
         $repos = $this->packages[$package]['repos'];
-        $url = "https://github.com/$user/$repos/archive/$version.zip";
+        $url = "https://github.com/$user/$repos/archive/$version.zip?".rand();
         $filepath = $this->download($url);
         $this->unzip($filepath);
 
@@ -181,7 +181,7 @@ class Installer
         $user = $this->packages[$package]['user'];
         $repos = $this->packages[$package]['repos'];
         // https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc/get/codeigniter-3.x.zip
-        $url = "https://bitbucket.org/$user/$repos/get/$version.zip";
+        $url = "https://bitbucket.org/$user/$repos/get/$version.zip?".rand();
         $filepath = $this->download($url);
         $dirname = $this->unzip($filepath);
 
@@ -264,7 +264,6 @@ class Installer
             } else {
                 if (file_exists($dst . '/' . $iterator->getSubPathName())) {
 
-
                   $contents = file_get_contents($dst . '/' . $iterator->getSubPathName());
 
                   if($iterator->getSubPathName() == 'autoload.php') {
@@ -275,8 +274,7 @@ class Installer
                         $contents
                     );
                   } else {
-                    $contents2 = file_get_contents($file);
-                    $contents .=  str_replace( '<?php', '', $contents2 );
+                    $contents .=  str_replace( '<?php', '', file_get_contents($file) );
                   }
 
                   file_put_contents($dst . '/' . $iterator->getSubPathName(), $contents);
