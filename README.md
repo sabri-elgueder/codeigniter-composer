@@ -89,7 +89,7 @@ $ php bin/install.php modular-extensions-hmvc master
 [CodeIgniter Template Library](https://github.com/jenssegers/codeigniter-template-library):
 
 ```
-$ php bin/install.php codeigniter-template-library
+$ php bin/install.php codeigniter-template-library master
 ```
 
 [Ion Auth](https://github.com/benedmunds/CodeIgniter-Ion-Auth):

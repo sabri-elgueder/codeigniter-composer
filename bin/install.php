@@ -262,7 +262,17 @@ class Installer
             if ($file->isDir()) {
                 @mkdir($dst . '/' . $iterator->getSubPathName());
             } else {
-                $success = copy($file, $dst . '/' . $iterator->getSubPathName());
+                if (file_exists($dst . '/' . $iterator->getSubPathName())) {
+
+                  $contents = file_get_contents($dst . '/' . $iterator->getSubPathName());
+                  $contents2 = file_get_contents($file);
+
+                  $contents .= '/n/n/n' . $contents2;
+                  file_put_contents($dst . '/' . $iterator->getSubPathName(), $contents);
+
+                } else {
+                  $success = copy($file, $dst . '/' . $iterator->getSubPathName());
+                }
                 if ($success) {
                     echo 'copied: ' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
                 }
