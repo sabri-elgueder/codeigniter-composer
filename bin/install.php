@@ -54,7 +54,7 @@ class Installer
                 'user'  => 'sabri-elgueder',
                 'repos' => 'codeigniter-hmvc-modules',
                 'name'  => 'CodeIgniter HMVC Modules (Sabri El Gueder)',
-                'dir'   => array('core', 'third_party'),
+                'dir'   => array('config', 'core', 'third_party'),
                 'msg'   => 'See https://github.com/sabri-elgueder/codeigniter-hmvc-modules#installation',
                 'example_branch' => 'master',
             ),
@@ -139,9 +139,21 @@ class Installer
             );
         }
 
+
+        if($package=='hmvc-modules') {
+            echo 'Uninstall module "modular-extensions-hmvc" if existing' . PHP_EOL;
+            list($src_del, $dst_del) = $this->$method('modular-extensions-hmvc', $this->packages['modular-extensions-hmvc']['example_branch'],false);
+            $this->recursiveDelete($dst_del);
+        }
+        if($package=='modular-extensions-hmvc') {
+            echo 'Uninstall module "hmvc-modules" if existing' . PHP_EOL;
+            list($src_del, $dst_del) = $this->$method('hmvc-modules', $this->packages['hmvc-modules']['example_branch'],false);
+            $this->recursiveDelete($dst_del);
+        }
+
         list($src, $dst) = $this->$method($package, $version);
 
-        $this->recursiveCopy($src, $dst);
+        $this->recursiveCopy($src, $dst, $package);
         $this->recursiveUnlink($this->tmp_dir);
 
         $msg = 'Installed: ' . $package .PHP_EOL;
@@ -151,12 +163,12 @@ class Installer
         return $msg;
     }
 
-    private function downloadFromGithub($package, $version)
+    private function downloadFromGithub($package, $version, $uninstall = true)
     {
         $user = $this->packages[$package]['user'];
         $repos = $this->packages[$package]['repos'];
         $url = "https://github.com/$user/$repos/archive/$version.zip?".rand();
-        $filepath = $this->download($url);
+        $filepath = $this->download($url, $uninstall);
         $this->unzip($filepath);
 
         $dir = $this->packages[$package]['dir'];
@@ -176,13 +188,13 @@ class Installer
         return array($src, $dst);
     }
 
-    private function downloadFromBitbucket($package, $version)
+    private function downloadFromBitbucket($package, $version, $uninstall = true)
     {
         $user = $this->packages[$package]['user'];
         $repos = $this->packages[$package]['repos'];
         // https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc/get/codeigniter-3.x.zip
         $url = "https://bitbucket.org/$user/$repos/get/$version.zip?".rand();
-        $filepath = $this->download($url);
+        $filepath = $this->download($url, $uninstall);
         $dirname = $this->unzip($filepath);
 
         $dir = $this->packages[$package]['dir'];
@@ -201,13 +213,13 @@ class Installer
         return array($src, $dst);
     }
 
-    private function download($url)
+    private function download($url, $uninstall)
     {
         $file = file_get_contents($url);
         if ($file === false) {
             throw new RuntimeException("Can't download: $url");
         }
-        echo 'Downloaded: ' . $url . PHP_EOL;
+        if($uninstall) echo 'Downloaded: ' . $url . PHP_EOL;
 
         $urls = parse_url($url);
         $filepath = $this->tmp_dir . '/' . basename($urls['path']);
@@ -237,15 +249,16 @@ class Installer
      * @param string $src
      * @param string $dst
      */
-    private function recursiveCopy($src, $dst)
+    private function recursiveCopy($src, $dst, $package='')
     {
+
         if ($src === false) {
             return;
         }
 
         if (is_array($src)) {
             foreach ($src as $key => $source) {
-                $this->recursiveCopy($source, $dst[$key]);
+                $this->recursiveCopy($source, $dst[$key],$package);
             }
 
             return;
@@ -262,11 +275,11 @@ class Installer
             if ($file->isDir()) {
                 @mkdir($dst . '/' . $iterator->getSubPathName());
             } else {
-                if (file_exists($dst . '/' . $iterator->getSubPathName())) {
+                if (file_exists($dst . '/' . $iterator->getSubPathName()) and (filesize($file) != filesize($dst . '/' . $iterator->getSubPathName()))) {
 
                   $contents = file_get_contents($dst . '/' . $iterator->getSubPathName());
 
-                  if($iterator->getSubPathName() == 'autoload.php') {
+                  if($iterator->getSubPathName() == 'autoload.php' and $package=='codeigniter-template-library') {
                     // Enable libraries template
                     $contents = str_replace(
                         '$autoload[\'libraries\'] = array();',
@@ -274,7 +287,11 @@ class Installer
                         $contents
                     );
                   } else {
-                    $contents .=  str_replace( '<?php', '', file_get_contents($file) );
+
+                    if (stripos($contents, '$config[\'modules_locations\']') === false) {
+                        $contents .=  str_replace('<?php', '', file_get_contents($file));
+                    }
+
                   }
 
                   file_put_contents($dst . '/' . $iterator->getSubPathName(), $contents);
@@ -289,6 +306,47 @@ class Installer
                   echo 'updated: ' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
                 }
             }
+        }
+    }
+
+
+    /**
+     * Recursive Delete
+     *
+     * @param string $src
+     * @param string $dst
+     */
+    private function recursiveDelete($src)
+    {
+
+        if ($src === false) {
+            return;
+        }
+
+
+        if (is_array($src)) {
+            foreach ($src as $key => $source) {
+                $this->recursiveDelete($source);
+            }
+
+            return;
+        }
+
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($src, \RecursiveDirectoryIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::CHILD_FIRST
+        );
+
+        foreach ($iterator as $file) {
+          if(file_exists($file)){
+            if ($file->isDir()) {
+              rmdir($src . '/' . $iterator->getSubPathName());
+              //echo 'rmdir:' . $src . '/' . $iterator->getSubPathName() . PHP_EOL;
+            } else {
+              unlink($src . '/' . $iterator->getSubPathName());
+              //echo 'unlink:' . $src . '/' . $iterator->getSubPathName() . PHP_EOL;
+            }
+          }
         }
     }
 
