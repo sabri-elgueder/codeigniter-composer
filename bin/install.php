@@ -316,9 +316,9 @@ class Installer
      * @param string $src
      * @param string $dst
      */
-    private function recursiveDelete($src)
+    private function recursiveDelete($src, $dst)
     {
-
+		
         if ($src === false) {
             return;
         }
@@ -326,7 +326,7 @@ class Installer
 
         if (is_array($src)) {
             foreach ($src as $key => $source) {
-                $this->recursiveDelete($source);
+                $this->recursiveDelete($source,$dst[$key]);
             }
 
             return;
@@ -338,17 +338,18 @@ class Installer
         );
 
         foreach ($iterator as $file) {
-          if(file_exists($file)){
+          if(file_exists($dst . '/' . $iterator->getSubPathName()) and (filesize($file) == filesize($dst . '/' . $iterator->getSubPathName())) ){
             if ($file->isDir()) {
-              rmdir($src . '/' . $iterator->getSubPathName());
-              //echo 'rmdir:' . $src . '/' . $iterator->getSubPathName() . PHP_EOL;
+              //rmdir($src . '/' . $iterator->getSubPathName());
+              echo 'rmdir:' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
             } else {
-              unlink($src . '/' . $iterator->getSubPathName());
-              //echo 'unlink:' . $src . '/' . $iterator->getSubPathName() . PHP_EOL;
+              //unlink($src . '/' . $iterator->getSubPathName());
+              echo 'unlink:' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
             }
           }
         }
     }
+
 
     /**
      * Recursive Unlink
