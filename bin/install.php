@@ -143,12 +143,12 @@ class Installer
         if($package=='hmvc-modules') {
             echo 'Uninstall module "modular-extensions-hmvc" if existing' . PHP_EOL;
             list($src_del, $dst_del) = $this->$method('modular-extensions-hmvc', $this->packages['modular-extensions-hmvc']['example_branch'],false);
-            $this->recursiveDelete($dst_del);
+            $this->recursiveDelete($src_del, $dst_del);
         }
         if($package=='modular-extensions-hmvc') {
             echo 'Uninstall module "hmvc-modules" if existing' . PHP_EOL;
             list($src_del, $dst_del) = $this->$method('hmvc-modules', $this->packages['hmvc-modules']['example_branch'],false);
-            $this->recursiveDelete($dst_del);
+            $this->recursiveDelete($src_del, $dst_del);
         }
 
         list($src, $dst) = $this->$method($package, $version);
