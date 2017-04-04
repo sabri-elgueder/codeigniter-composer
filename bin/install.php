@@ -340,11 +340,11 @@ class Installer
         foreach ($iterator as $file) {
           if(file_exists($dst . '/' . $iterator->getSubPathName()) and (filesize($file) == filesize($dst . '/' . $iterator->getSubPathName())) ){
             if ($file->isDir()) {
-              //rmdir($src . '/' . $iterator->getSubPathName());
-              echo 'rmdir:' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
+              rmdir($dst . '/' . $iterator->getSubPathName());
+              //echo 'rmdir:' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
             } else {
-              //unlink($src . '/' . $iterator->getSubPathName());
-              echo 'unlink:' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
+              unlink($dst . '/' . $iterator->getSubPathName());
+              //echo 'unlink:' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
             }
           }
         }
